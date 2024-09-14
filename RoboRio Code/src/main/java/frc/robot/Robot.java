@@ -7,9 +7,12 @@
 
 package frc.robot;
 
+import javax.xml.xpath.XPathVariableResolver;
+
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.XboxController;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -56,9 +59,78 @@ public class Robot extends TimedRobot {
     timer.start();
   }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+XboxController xboxController = new XboxController(0);
+
   @Override
   public void robotPeriodic() {
     //If more than 5 seconds has passed
+   
+    if(xboxController.getAButton()){
+arduino.write(new byte[] {0x12}, 1);
+    }
+    //.whileTrue( );
     if(timer.get() > 20) {
       //Output that we wrote to the arduino, write our "trigger byte"
       //to the arduino and reset the timer for next time
