@@ -1,2 +1,0 @@
-/*arduino.write(new byte[] {0x12}, 1);
-sends the signal "0x12" to ardunio

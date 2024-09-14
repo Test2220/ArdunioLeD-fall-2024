@@ -59,7 +59,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
     //If more than 5 seconds has passed
-    if(timer.get() > 5) {
+    if(timer.get() > 20) {
       //Output that we wrote to the arduino, write our "trigger byte"
       //to the arduino and reset the timer for next time
       System.out.println("Wrote to Arduino");
