@@ -128,16 +128,19 @@ XboxController xboxController = new XboxController(0);
     //If more than 5 seconds has passed
    
     if(xboxController.getAButton()){
+      System.out.println("Wrote to Arduino");
 arduino.write(new byte[] {0x12}, 1);
     }
-    //.whileTrue( );
-    if(timer.get() > 20) {
-      //Output that we wrote to the arduino, write our "trigger byte"
-      //to the arduino and reset the timer for next time
-      System.out.println("Wrote to Arduino");
-      arduino.write(new byte[] {0x12}, 1);
-      timer.reset();
-    }
+
+
+    // //.whileTrue( );
+    // if(timer.get() > 20) {
+    //   //Output that we wrote to the arduino, write our "trigger byte"
+    //   //to the arduino and reset the timer for next time
+    //   System.out.println("Wrote to Arduino");
+    //   arduino.write(new byte[] {0x12}, 1);
+    //   timer.reset();
+    // }
 
     //If we've received something, read the entire buffer
     //from the arduino as a string
