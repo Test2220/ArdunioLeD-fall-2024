@@ -1,7 +1,7 @@
 #include <FastLED.h>
 
-#define LED_PIN     7
-#define NUM_LEDS    3
+#define LED_PIN 7
+#define NUM_LEDS 100
 
 CRGB leds[NUM_LEDS];
 
@@ -12,42 +12,92 @@ void setup() {
 
 
 
+// void loop() {
+
+
+//     if(Serial.available()) {
+//     //Read a byte from the input buffer
+//     byte value = Serial.read();
+
+//     //If the byte is 0x12 (i.e. 18 in decimal)
+//     if(value == 0x12) {
+//       //Write a string to the output buffer as a response to send to the RoboRIO
+
+
+//       leds[1] = CRGB(0, 10, 0);
+//       FastLED.show();
+//       leds[2] = CRGB(0, 10, 0);
+//       FastLED.show();
+
+//     }
+
+//      if(value == 0x13) {
+//       //Write a string to the output buffer as a response to send to the RoboRIO
+
+
+//       leds[1] = CRGB(0, 0, 0);
+//       FastLED.show();
+//       leds[2] = CRGB(0, 0, 0);
+//       FastLED.show();
+
+//     }
+//      if(value == 0x14) {
+//       //Write a string to the output buffer as a response to send to the RoboRIO
+
+
+//       leds[1] = CRGB(0, 0, 10);
+//       FastLED.show();
+//       leds[2] = CRGB(0, 0, 10);
+//       FastLED.show();
+
+//     }
+//      if(value == 0x15) {
+//       //Write a string to the output buffer as a response to send to the RoboRIO
+
+
+//       leds[1] = CRGB(10, 0, 0);
+//       FastLED.show();
+//       leds[2] = CRGB(10, 0, 0);
+//       FastLED.show();
+
+//     }
+//   }
+
+
+
+
+
+
+//   //Delay 50 milliseconds, otherwise the loop method runs as fast as possible over and over again which isn't really necessary and can sometimes cause
+//   //instability in the callbacks used to manage the serial buffers when using higher baud rates.
+//   delay(50);
+// }
+
+
+
 void loop() {
+  for (int dot = (NUM_LEDS - 1); dot >= 0; dot--)
 
+  {
 
- leds[1] = CRGB(0, 10, 0);
-      FastLED.show();
-     leds[2] = CRGB(140, 0, 0);
-       FastLED.show();
-     leds[3] = CRGB(0, 125, 10);
-     FastLED.show();
-    leds[4] = CRGB(0, 140, 140);
+    leds[dot] = CRGB::Green;
+
     FastLED.show();
-  leds[5] = CRGB(0, 0, 140);
-  FastLED.show();
 
-  delay(100);
+    leds[dot] = CRGB::Black;
 
-  leds[1] = CRGB(0, 0, 0);
-  FastLED.show();
-  leds[2] = CRGB(0, 0, 0);
-  FastLED.show();
-  leds[3] = CRGB(0, 0, 0);
-  FastLED.show();
-  leds[4] = CRGB(0, 0, 0);
-  FastLED.show();
-  leds[5] = CRGB(0, 0, 0);
-  FastLED.show();
+    delay(300);
+  }
 
-  delay(100);
+  for (int dot = 0; dot < NUM_LEDS; dot++)
 
+  {
+    leds[dot] = CRGB::Red;
 
+    FastLED.show();
 
+    leds[dot] = CRGB::Black;
 
-    
-  
-
-  //Delay 50 milliseconds, otherwise the loop method runs as fast as possible over and over again which isn't really necessary and can sometimes cause
-  //instability in the callbacks used to manage the serial buffers when using higher baud rates. 
-  delay(50);
+    delay(300);
+  }
 }

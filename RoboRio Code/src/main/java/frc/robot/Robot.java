@@ -132,6 +132,21 @@ XboxController xboxController = new XboxController(0);
 arduino.write(new byte[] {0x12}, 1);
     }
 
+      if(xboxController.getBButton()){
+      System.out.println("Wrote to Arduino");
+arduino.write(new byte[] {0x13}, 1);
+    }
+
+    if(xboxController.getXButton()){
+      System.out.println("Wrote to Arduino");
+arduino.write(new byte[] {0x14}, 1);
+    }
+
+    if(xboxController.getYButton()){
+      System.out.println("Wrote to Arduino");
+arduino.write(new byte[] {0x15}, 1);
+    }
+
 
     // //.whileTrue( );
     // if(timer.get() > 20) {
