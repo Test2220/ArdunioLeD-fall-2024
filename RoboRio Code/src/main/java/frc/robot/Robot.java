@@ -7,12 +7,15 @@
 
 package frc.robot;
 
+import static frc.robot.Arduino.ArduinoCommand.*;
+
 import javax.xml.xpath.XPathVariableResolver;
 
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.Arduino.Arduino;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -22,145 +25,28 @@ import edu.wpi.first.wpilibj.XboxController;
  * project.
  */
 public class Robot extends TimedRobot {
-  
-  private SerialPort arduino; //The serial port that we try to communicate with
 
-  private Timer timer; //The timer to keep track of when we send our signal to the Arduino
+  private Arduino arduino; // The serial port that we try to communicate with
 
   @Override
   public void robotInit() {
-    //A "Capture Try/Catch". Tries all the possible serial port
-    //connections that make sense if you're using the USB ports
-    //on the RoboRIO. It keeps trying unless it never finds anything.
-    try {
-      arduino = new SerialPort(9600, SerialPort.Port.kUSB);
-      System.out.println("Connected on kUSB!");
-    } catch (Exception e) {
-      System.out.println("Failed to connect on kUSB, trying kUSB 1");
-
-      try {
-        arduino = new SerialPort(9600, SerialPort.Port.kUSB1);
-        System.out.println("Connected on kUSB1!");
-      } catch (Exception e1) {
-        System.out.println("Failed to connect on kUSB1, trying kUSB 2");
-
-        try {
-          arduino = new SerialPort(9600, SerialPort.Port.kUSB2);
-          System.out.println("Connected on kUSB2!");
-        } catch (Exception e2) {
-          System.out.println("Failed to connect on kUSB2, all connection attempts failed!");
-        }
-      }
-    }
-
-    //Create a timer that will be used to keep track of when we should send
-    //a signal and start it. 
-    timer = new Timer();
-    timer.start();
+    arduino = new Arduino();
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-XboxController xboxController = new XboxController(0);
+  XboxController xboxController = new XboxController(0);
 
   @Override
   public void robotPeriodic() {
-    //If more than 5 seconds has passed
-   
-    if(xboxController.getAButton()){
+    // If more than 5 seconds has passed
+
+    if (xboxController.getAButton()) {
       System.out.println("Wrote to Arduino");
-arduino.write(new byte[] {0x12}, 1);
+      arduino.runCommand(OFF);
     }
 
-      if(xboxController.getBButton()){
+    if (xboxController.getBButton()) {
       System.out.println("Wrote to Arduino");
-arduino.write(new byte[] {0x13}, 1);
-    }
-
-    if(xboxController.getXButton()){
-      System.out.println("Wrote to Arduino");
-arduino.write(new byte[] {0x14}, 1);
-    }
-
-    if(xboxController.getYButton()){
-      System.out.println("Wrote to Arduino");
-arduino.write(new byte[] {0x15}, 1);
-    }
-
-
-    // //.whileTrue( );
-    // if(timer.get() > 20) {
-    //   //Output that we wrote to the arduino, write our "trigger byte"
-    //   //to the arduino and reset the timer for next time
-    //   System.out.println("Wrote to Arduino");
-    //   arduino.write(new byte[] {0x12}, 1);
-    //   timer.reset();
-    // }
-
-    //If we've received something, read the entire buffer
-    //from the arduino as a string
-    if(arduino.getBytesReceived() > 0) {
-      System.out.print(arduino.readString());
+      arduino.runCommand(RED);
     }
   }
 
