@@ -13,7 +13,6 @@ import javax.xml.xpath.XPathVariableResolver;
 
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.Arduino.Arduino;
 
@@ -40,15 +39,24 @@ public class Robot extends TimedRobot {
     // If more than 5 seconds has passed
 
     if (xboxController.getAButton()) {
-      System.out.println("Wrote to Arduino");
-      arduino.runCommand(OFF);
+      arduino.runCommand(GREEN);
     }
 
     if (xboxController.getBButton()) {
-      System.out.println("Wrote to Arduino");
       arduino.runCommand(RED);
     }
+
+    if (xboxController.getXButton()) {
+      arduino.runCommand(BLUE);
+    }
+
+    if (xboxController.getYButton()) {
+      arduino.runCommand(YELLOW);
+    }
+
   }
+
+
 
   @Override
   public void autonomousInit() {
