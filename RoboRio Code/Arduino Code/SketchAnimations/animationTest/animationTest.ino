@@ -77,11 +77,8 @@ void loop() {
 
 
 
-  // Check if it's time to switch command
   if (currentMillis - previousMillis >= interval) {
-    previousMillis = currentMillis; // Reset the previous time
-
-    // Toggle between the two commands
+    previousMillis = currentMillis;
     toggleState = !toggleState;
 
     if (toggleState) {
@@ -94,6 +91,9 @@ void loop() {
   }
   FastLED.show();
 }
+
+
+
 
 void command1() {
 fill_solid(leds, NUM_LEDS, CRGB(255, 0, 0));
